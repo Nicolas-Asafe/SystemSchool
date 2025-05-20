@@ -1,7 +1,9 @@
-import Repository from "../../../core/ports/repository";
+import { ExamType } from "../../../core/entities/Exam";
+import { StudentType } from "../../../core/entities/student";
+import Repository from "../../../core/ports/Studentrepository";
 
 const db = {
-    Students: [] as any[],
+    Students: [] as StudentType[],
     Rooms: [] as any[]
 }
 
@@ -23,6 +25,17 @@ class MemoryRepository implements Repository {
     }
     findAll(): any[] {
         return db.Students
+    }
+    AddExamById(id: number,Exam:ExamType): void {
+        const student = db.Students.find(s => s.Id === id) 
+        if (!student) throw new Error("Estudante não existe")
+        student.Exams?.push(Exam)   
+    }
+    findOneById(id: number): StudentType {
+        const student = db.Students.find(s => s.Id === id) 
+        if (!student) throw new Error("Estudante não existe")
+        
+        return student
     }
 }
 export default MemoryRepository

@@ -13,6 +13,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 var _StudentsService_repo;
 Object.defineProperty(exports, "__esModule", { value: true });
 const student_1 = require("../entities/student");
+const Exam_1 = require("../entities/Exam");
 class StudentsService {
     constructor(repo) {
         _StudentsService_repo.set(this, void 0);
@@ -23,12 +24,23 @@ class StudentsService {
         __classPrivateFieldGet(this, _StudentsService_repo, "f").save(NewStudent.data);
     }
     RemoveStudent(params) {
-        if (params.Id || params.Id < -1)
+        if (params.Id || params.Id < 0)
             throw new Error("Para remover um aluno é necessario adicionar o id dele nos parametros");
         __classPrivateFieldGet(this, _StudentsService_repo, "f").remove(params.Id);
     }
     ListStudents() {
         return __classPrivateFieldGet(this, _StudentsService_repo, "f").findAll();
+    }
+    AddExamForStudent(paramsForCreateExam, Id) {
+        if (Id || Id < 0)
+            throw new Error("Para adicionar um exame você precisa colocar o id do seu aluno nos parametros");
+        const exam = new Exam_1.Exam(paramsForCreateExam);
+        __classPrivateFieldGet(this, _StudentsService_repo, "f").AddExamById(Id, exam.data);
+    }
+    FindStudent(Id) {
+        if (Id || Id < 0)
+            throw new Error("Para achar um aluno é preciso colocar o id dele nos parametros");
+        return __classPrivateFieldGet(this, _StudentsService_repo, "f").findOneById(Id);
     }
 }
 _StudentsService_repo = new WeakMap();

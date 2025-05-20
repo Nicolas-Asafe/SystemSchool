@@ -24,5 +24,18 @@ class MemoryRepository {
     findAll() {
         return db.Students;
     }
+    AddExamById(id, Exam) {
+        var _a;
+        const student = db.Students.find(s => s.Id === id);
+        if (!student)
+            throw new Error("Estudante não existe");
+        (_a = student.Exams) === null || _a === void 0 ? void 0 : _a.push(Exam);
+    }
+    findOneById(id) {
+        const student = db.Students.find(s => s.Id === id);
+        if (!student)
+            throw new Error("Estudante não existe");
+        return student;
+    }
 }
 exports.default = MemoryRepository;

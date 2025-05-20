@@ -1,9 +1,12 @@
+import { ExamType } from "./Exam";
+
 export interface StudentType {
     Name: string;
     Age: number;
     Class: number;
     Shift: "Morning" | "Night";
     Notes?: string[];
+    Exams?:ExamType[]
     Id?: number
 }
 
