@@ -10,11 +10,11 @@ function Main() {
     try {
         const repo = new memoryRepository_1.default();
         const serv = new studentsService_1.default(repo);
-        const exameDeMatematicaDoNicolas = new Exam_1.Exam({
+        const EDMDN = new Exam_1.Exam({
             NoteValue: 10,
             Subject: "Math",
         });
-        exameDeMatematicaDoNicolas.CreateDateForTheExam(10, 2, 20);
+        EDMDN.CreateDateForTheExam(10, 2, 20);
         serv.NewStudent({
             Age: 12,
             Class: 7,
@@ -23,7 +23,7 @@ function Main() {
             Exams: [],
             Shift: "Morning",
         });
-        serv.AddExamForStudent(exameDeMatematicaDoNicolas.data, 0);
+        serv.AddExamForStudent(EDMDN.data, 0);
         console.log(serv.FindStudent(0));
     }
     catch (err) {

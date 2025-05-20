@@ -4,15 +4,13 @@ import { Exam } from "./core/entities/Exam";
 
 function Main() {
     try {
-    
-
         const repo = new MemoryRepository()
         const serv = new StudentsService(repo)
-        const exameDeMatematicaDoNicolas = new Exam({
+        const EDMDN = new Exam({
             NoteValue: 10,
             Subject:"Math",
         })
-        exameDeMatematicaDoNicolas.CreateDateForTheExam(10,2,20)
+        EDMDN.CreateDateForTheExam(10,2,20)
 
         serv.NewStudent({
             Age: 12,
@@ -23,7 +21,7 @@ function Main() {
             Shift: "Morning",
         })
         
-        serv.AddExamForStudent(exameDeMatematicaDoNicolas.data,0)
+        serv.AddExamForStudent(EDMDN.data,0)
         console.log(serv.FindStudent(0))
     } catch (err:any) {
         console.error(err)
