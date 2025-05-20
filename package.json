@@ -1,0 +1,11 @@
+{
+  "name": "systemschool",
+  "version": "1.0.0",
+  "scripts": {
+    "build":"tsc",
+    "dev":"node --watch out/app.js",
+    "dev-tsc":"tsc -w",
+    "start":"node out/app.js"
+  },
+  "license": "MIT"
+}
